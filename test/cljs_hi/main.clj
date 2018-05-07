@@ -3,6 +3,8 @@
    [cljs.build.api :as b]
    [doo.core :as doo]))
 
+;; The CLJS build api needs to be told where to find sources
+;; Would be nice to have this automatically set based on the JVM classpath
 (def test-paths ["src" "test"])
 ;; Karma seems to need an absolute path to get its scripts tags right
 (def asset-path (str (System/getProperty "user.dir") "/out")) 
@@ -12,34 +14,34 @@
    :output-dir     "out"
    :asset-path     asset-path
    :main           'cljs-hi.runner
-   :verbose        false            ; set to true to see what's being recompiled
+   :verbose        false ; set to true to see what's being recompiled
    :compiler-stats true
    :cache-analysis true})
 
-(defn compile!
-  []
-  (b/build (apply b/inputs test-paths) ; have to tell compiler where to find its sources
-           compiler-opts))             ; would have thought deps.edn aliases would be used
-
-(defn watch
+(defn watch!
   []
   (b/watch (apply b/inputs test-paths)
+           ;; this will be called after recompilation
+           (assoc compiler-opts :watch-fn 'cljs-hi.main/doo-test)))
+
+(defn compile!
+  []
+  (b/build (apply b/inputs test-paths)        
            compiler-opts))
 
 (defn doo-test
   []
-  (let [doo-opts {:debug false}]
-    (doo/run-script :chrome compiler-opts doo-opts)
-    (System/exit 0)))
+  (let [doo-opts {:debug false}] ; set to true to see what doo is up to
+    (doo/run-script :chrome-headless compiler-opts doo-opts)))
 
-(defn compile-and-test
+(defn compile-and-test!
   []
   (compile!)
-  (doo-test))
+  (doo-test)
+  (System/exit 0))
 
 (defn -main
   [& args]
   (cond
-    (some #{"watch"} args) (watch)
-    (some #{"test"} args)  (doo-test)
-    :else                  (compile-and-test)))
+    (some #{"watch"} args) (watch!)
+    :else                  (compile-and-test!)))

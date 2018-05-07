@@ -4,7 +4,7 @@
 
 (defn ^:export exponent
   [n pow]
-  (reduce * (repeat pow  n)))
+  (reduce * (repeat pow n)))
 
 (if-let [root (.getElementById js/document "app")]
   (.render js/ReactDOM
