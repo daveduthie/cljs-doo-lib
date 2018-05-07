@@ -29,4 +29,6 @@ A minimal example of using doo as a [library](https://github.com/bensu/doo#libra
 
 ## Run it
 
-You can run `clj -A:test -m cljs-hi.main` to compile the test runner as the entrypoint and see the test output.
+You can run `clj -A:test -m cljs-hi.main` to compile the test runner as the entrypoint and run the tests.
+
+To start incremental recompilation, run `clj -A:test -m cljs-hi.main watch`, then, in another terminal, run `clj -A:test -m cljs-hi.main test`.
