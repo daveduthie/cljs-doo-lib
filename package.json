@@ -1,0 +1,28 @@
+{
+  "name": "cljs-hi",
+  "version": "1.0.0",
+  "description": "A minimal example of using doo as a [library](https://github.com/bensu/doo#library) to test ClojureScript code.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "karma": "^2.0.2",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-cljs-test": "^0.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveduthie/cljs-doo-lib.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daveduthie/cljs-doo-lib/issues"
+  },
+  "homepage": "https://github.com/daveduthie/cljs-doo-lib#readme"
+}
