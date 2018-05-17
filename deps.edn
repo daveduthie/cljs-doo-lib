@@ -1,4 +1,5 @@
 {:deps    {org.clojure/clojurescript {:mvn/version "1.10.238"}
-           cljsjs/react-dom          {:mvn/version "16.2.0-3"}}
+           :reagent                  {:mvn/version "0.8.0"}}
  :aliases {:test {:extra-paths ["test"]
-                  :extra-deps  {doo {:mvn/version "0.1.10"}}}}}
+                  :extra-deps  {doo {:mvn/version "0.1.10"}}
+                  :main-opts ["-m" "cljs-hi.main"]}}}
